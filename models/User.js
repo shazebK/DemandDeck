@@ -13,18 +13,30 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String,
   },
-  //   contact: {
-  //     type: Number,
-  //   },
-  //   email: {
-  //     type: String,
-  //   },
-  //   location: {
-  //     type: String,
-  //   },
-  //   urls: {
-  //     type: [String],
-  //   },
+  urls: {
+    type: [String],
+  },
+  services: [String],
+  experiences: [String],
+  achievements: [String],
+  demandCreated: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Demand",
+    },
+  ],
+  demandAnswered: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Demand",
+    },
+  ],
+  resources: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Resource",
+    },
+  ],
 });
 
 const User = mongoose.models?.User || mongoose.model("User", UserSchema);
