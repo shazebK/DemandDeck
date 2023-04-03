@@ -16,6 +16,10 @@ export const BusinessSchema = new mongoose.Schema({
   start: Date,
   end: Date,
   reviews: [RatingSchema],
+  resourcesNeeded: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Resource",
+  },
 });
 
 const Business =

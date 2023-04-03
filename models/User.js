@@ -25,12 +25,6 @@ const UserSchema = new mongoose.Schema({
       ref: "Demand",
     },
   ],
-  demandAnswered: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Demand",
-    },
-  ],
   resources: [
     {
       type: mongoose.Schema.Types.ObjectId,

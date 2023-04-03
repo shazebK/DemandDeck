@@ -5,6 +5,7 @@ const DemandSchema = new mongoose.Schema({
   title: {
     type: String,
   },
+
   description: {
     type: String,
   },
@@ -13,6 +14,20 @@ const DemandSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+
+  active: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+
+  requesters: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+
+  location: String,
 
   responses: [ResponseSchema],
 });
