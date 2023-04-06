@@ -21,7 +21,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="navbar bg-blue-600 text-white font-bold text-xl px-4">
+    <div className="navbar bg-blue-600 text-white font-bold text-xl px-4 sticky top-0">
       <Link className="flex-1" href={"/"}>
         DemandDeck
       </Link>
