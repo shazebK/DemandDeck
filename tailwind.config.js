@@ -6,11 +6,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors:{
-      'sec':'#7000FF',
-      'sec-dark':'#4900A6',
+    extend: {
+      colors:{
+        'sec':'#7000FF',
+        'sec-dark':'#4900A6',
+      },
     },
-    extend: {},
   },
   plugins: [require("daisyui")],
 

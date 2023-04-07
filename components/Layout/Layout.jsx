@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   return (
     <div className={`min-h-screen bg-white ${poppins.className}`}>
       <Navbar />
-      <main className="">
+      <main>
       {children}
       </main>
     </div>

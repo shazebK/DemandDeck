@@ -6,7 +6,7 @@ export default function Login() {
   return (
     <div className='w-full my-6'>
     <AuthInput placeholder="user@gmail.com"><Mail/></AuthInput>
-    <AuthInput type = "text" placeholder="Password"><Visibility/></AuthInput>
+    <AuthInput type = "password" placeholder="Password"><Visibility/></AuthInput>
     </div>
   )
 }

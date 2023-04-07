@@ -7,7 +7,7 @@ export default function SignUp() {
     <div className='w-full my-6'>
         <AuthInput placeholder="UserName"><Person/></AuthInput>
         <AuthInput placeholder="user@gmail.com"><Mail/></AuthInput>
-        <AuthInput type = "text" placeholder="Password"><Visibility/></AuthInput>
+        <AuthInput type = "password" placeholder="Password"><Visibility/></AuthInput>
         <div className='w-full flex justify-between'>
         <label className="label cursor-pointer">
         <span className="label-text text-[18px] mx-2">Individual</span> 
