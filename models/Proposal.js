@@ -22,6 +22,8 @@ const ProposalSchema = new mongoose.Schema({
     },
   ],
 
+  status: String, // enum -> req, acc, rej, inqueue
+
   resourcesNeeded: [
     {
       type: mongoose.Schema.Types.ObjectId,

@@ -17,7 +17,7 @@ const DemandSchema = new mongoose.Schema({
 
   active: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Business",
   },
 
   proposals: [

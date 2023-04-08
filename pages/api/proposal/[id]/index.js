@@ -11,13 +11,14 @@ const handler = async (req, res) => {
   //     return res.status(200).json({ msg: "Not Authorized" });
   //   } else {
   const { id } = req.query;
-  const { description } = req.body;
+  const { description, status } = req.body;
 
   if (req.method === "PUT") {
     const updated = await Proposal.findByIdAndUpdate(
       id,
       {
         description,
+        status,
       },
       { new: true }
     );
