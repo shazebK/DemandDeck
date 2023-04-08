@@ -1,24 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { getUserData } from "../../utils/api";
+import { useUser } from "../../hooks/queries";
 
 const Navbar = () => {
-  const [user, setUser] = useState(null);
   const { data: session } = useSession();
 
   const logoutHandler = () => {
     signOut();
   };
 
-  useEffect(() => {
-    const helper = async () => {
-      const { data } = await axios.get("/api/auth/profile");
-      setUser(data);
-    };
-
-    helper();
-  }, []);
+  const { user, isLoading, isError, error } = useUser();
 
   return (
     <div className="navbar bg-blue-600 text-white font-bold text-xl px-4 sticky top-0">
@@ -28,7 +22,9 @@ const Navbar = () => {
       <div>
         <Link href={"/poll"}>New Poll</Link>
         {!!session && (
-          <div className="btn btn-ghost rounded-full">{user?.name}</div>
+          <div className="btn btn-ghost rounded-full">
+            {isLoading ? "Loading" : user?.name}
+          </div>
         )}
         {!session && (
           <Link className="btn btn-ghost" href={"/auth"}>
