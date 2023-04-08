@@ -1,9 +1,12 @@
 import Business from "../../../../models/Business";
+import connectDB from "../../../../utils/db";
 
 const handler = async (req, res) => {
+  connectDB();
   const { id } = req.query;
   const { user, title, score } = req.body;
   const business = await Business.findById(id);
+  console.log(business);
   const userReview = business.reviews.find((el) => {
     return JSON.parse(JSON.stringify(el.user)) === user;
   });
