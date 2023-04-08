@@ -16,6 +16,12 @@ export const getPollData = async (id) => {
   return data;
 };
 
+export const getBusiness = async (id) => {
+  console.log(id);
+  const { data } = await axios.get(`/api/business/${id}`);
+  return data;
+};
+
 export const proposalmaker = async (payload) => {
   const { id, description } = payload;
   console.log(payload);
@@ -26,8 +32,8 @@ export const proposalmaker = async (payload) => {
 };
 
 export const proposalacceptor = async (payload) => {
-  const { id } = payload;
-  const { data } = await axios.post(`/api/demand/${id}/fulfill`);
+  const { id, owner } = payload;
+  const { data } = await axios.post(`/api/demand/${id}/fulfill`, { owner });
   return data;
 };
 

@@ -13,10 +13,12 @@ const handler = async (req, res) => {
       .populate({
         path: "owner",
         select: "email name _id",
+        model: User,
       })
       .populate({
         path: "benefeciaries",
         select: "name email _id",
+        model: User,
       })
       .populate({
         path: "reviews",
@@ -24,6 +26,12 @@ const handler = async (req, res) => {
           path: "user",
           select: "name email _id",
         },
+        select: "title score",
+      })
+      .populate({
+        path: "onRequest",
+        select: "title description creator",
+        model: Demand,
       });
     res.status(200).json(business);
   } else if (req.method === "PUT") {

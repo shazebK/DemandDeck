@@ -12,21 +12,36 @@ const DemandPage = () => {
 
   const { acceptProposal } = usePollMutations(id);
 
-  const proposalAcceptHandler = () => {
-    acceptProposal.mutate({ id });
+  const proposalAcceptHandler = (ownerId) => {
+    acceptProposal.mutate({ id, owner: JSON.parse(JSON.stringify(ownerId)) });
   };
 
   return (
     <div>
       {JSON.stringify(demand)}
-      {demand?.proposals.map((demand) => (
+      {demand?.proposals.map((prop) => (
         <div className="my-6">
-          <div>{JSON.stringify(demand)}</div>
-          <button className="btn btn-primary" onClick={proposalAcceptHandler}>
+          <div>{JSON.stringify(prop)}</div>
+          <button
+            className="btn btn-primary"
+            onClick={() => proposalAcceptHandler(prop.creator)}
+          >
             Approve
           </button>
         </div>
       ))}
+      {demand?.active && (
+        <div
+          className="btn btn-primary"
+          onClick={() =>
+            router.push(
+              `/business/${JSON.parse(JSON.stringify(demand.active._id))}`
+            )
+          }
+        >
+          Go to Business
+        </div>
+      )}
       <div
         className="btn btn-primary"
         onClick={() => {

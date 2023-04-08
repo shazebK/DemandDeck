@@ -1,5 +1,4 @@
 import { getServerSession } from "next-auth";
-
 import Demand from "../../../../models/Demand.js";
 import { authOptions } from "../../auth/[...nextauth].js";
 import connectDB from "../../../../utils/db.js";
@@ -14,11 +13,12 @@ const handler = async (req, res) => {
   if (!sess) {
     return res.status(200).json({ msg: "Not Authorized" });
   } else {
-    const { id: owner, role } = sess.user;
+    const { id, role } = sess.user;
     if (role !== "admin") return;
 
     if (req.method == "POST") {
       const { demandId } = req.query;
+      const { owner } = req.body;
 
       //setting up a temporary business session
 
