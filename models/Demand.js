@@ -20,10 +20,10 @@ const DemandSchema = new mongoose.Schema({
     ref: "User",
   },
 
-  requesters: [
+  proposals: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Proposal",
     },
   ],
 

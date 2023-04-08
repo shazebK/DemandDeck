@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import { RatingSchema } from "./Rating";
 
 export const BusinessSchema = new mongoose.Schema({
+  title: String,
+  description: String,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -12,14 +14,24 @@ export const BusinessSchema = new mongoose.Schema({
       ref: "User",
     },
   ],
-
+  // credits: Number,
+  // stake: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Stake",
+  // },
+  onRequest: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Demand",
+  },
   start: Date,
   end: Date,
   reviews: [RatingSchema],
-  resourcesNeeded: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Resource",
-  },
+  resourcesNeeded: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Resource",
+    },
+  ],
 });
 
 const Business =

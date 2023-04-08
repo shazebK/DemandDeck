@@ -31,6 +31,12 @@ const UserSchema = new mongoose.Schema({
       ref: "Resource",
     },
   ],
+  businesses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Business",
+    },
+  ],
 });
 
 const User = mongoose.models?.User || mongoose.model("User", UserSchema);
