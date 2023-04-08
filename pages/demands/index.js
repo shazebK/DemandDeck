@@ -1,19 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { usePolls } from "../../hooks/queries";
+import { usePollMutations } from "../../hooks/mutations";
 
 const PollsPage = () => {
-  const [demands, setDemands] = useState([]);
-  useEffect(() => {
-    const helper = async () => {
-      const { data } = await axios.get("/api/demand");
-      setDemands(data);
-    };
-
-    helper();
-  }, []);
+  const { demands, isError, error, isLoading } = usePolls();
+  const { castVoteMutation } = usePollMutations();
+  console.log(demands);
 
   const voteHandler = async (id) => {
-    await axios.post(`/api/demand/${id}/response`);
+    castVoteMutation.mutate({
+      response: false,
+      id,
+    });
   };
 
   return (
@@ -28,11 +27,14 @@ const PollsPage = () => {
           <div className="my-6 bg-blue-700 text-white">
             {JSON.stringify(el.active)}
           </div>
-          <div
-            className="m2-6 bg-blue-700 text-white"
-            onClick={() => voteHandler(el._id)}
-          >
+          <div className="m2-6 bg-blue-700 text-white">
+            votes: {el.responses.length}
+          </div>
+          <div className="m2-6 bg-blue-700 text-white">
             votes: {JSON.stringify(el.responses)}
+          </div>
+          <div onClick={() => voteHandler(el._id)} className="btn btn-ghost ">
+            Vote
           </div>
         </div>
       ))}

@@ -5,6 +5,18 @@ export const getUserData = async () => {
   return data;
 };
 
+export const getPollsData = async () => {
+  const { data } = await axios.get("/api/demand");
+  return data;
+};
+
 export const editUserData = async (payload) => {
-  await axios.put("/api/auth/profile", payload);
+  return await axios.put("/api/auth/profile", payload);
+};
+
+export const voteHandler = async (payload) => {
+  const { id, response } = payload;
+  return await axios.post(`/api/demand/${id}/response`, {
+    response,
+  });
 };

@@ -36,6 +36,9 @@ const Navbar = () => {
             Logout
           </div>
         )}
+        <Link className="btn btn-ghost" href={"/demands"}>
+          Polls
+        </Link>
       </div>
     </div>
   );

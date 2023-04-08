@@ -32,6 +32,7 @@ const handler = async (req, res) => {
             path: "user",
             select: "name email _id",
           },
+          select: "response",
         })
         .populate({
           path: "active",

@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { editUserData } from "../utils/api";
+import { editUserData, voteHandler } from "../utils/api";
 
 export const useUserMutations = () => {
   const queryClient = useQueryClient();
@@ -7,10 +7,22 @@ export const useUserMutations = () => {
   const editProfileMutation = useMutation({
     mutationFn: editUserData,
     onSuccess: () => {
-      console.log("sfkmfk");
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
 
   return { editProfileMutation };
+};
+
+export const usePollMutations = () => {
+  const queryClient = useQueryClient();
+
+  const castVoteMutation = useMutation({
+    mutationFn: voteHandler,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["demands"] });
+    },
+  });
+
+  return { castVoteMutation };
 };
