@@ -22,9 +22,9 @@ const Navbar = () => {
       <div>
         <Link href={"/poll"}>New Poll</Link>
         {!!session && (
-          <div className="btn btn-ghost rounded-full">
+          <Link className="btn btn-ghost rounded-full" href={"/auth/profile"}>
             {isLoading ? "Loading" : user?.name}
-          </div>
+          </Link>
         )}
         {!session && (
           <Link className="btn btn-ghost" href={"/auth"}>

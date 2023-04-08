@@ -8,7 +8,7 @@ export const useUser = () => {
     isError,
     data: user,
   } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["user"],
     queryFn: getUserData,
   });
 
