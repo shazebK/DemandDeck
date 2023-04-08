@@ -9,17 +9,17 @@ const handler = async (req, res) => {
   connectDB();
   const sess = await getServerSession(req, res, authOptions);
 
-  if (sess) {
+  if (!sess) {
     return res.status(200).json({ msg: "Not Authorized" });
   } else {
-    // const { id } = sess.user;
+    const { id } = sess.user;
     if (req.method == "POST") {
-      const { id } = req.body;
       const { demandId } = req.query;
 
       const dem = await Demand.findById(demandId);
       const proposal = await Proposal.create({
         ...req.body,
+        status: "req",
         demand: demandId,
         creator: id,
       });

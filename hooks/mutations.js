@@ -1,5 +1,10 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import { editUserData, voteHandler } from "../utils/api";
+import {
+  editUserData,
+  proposalacceptor,
+  proposalmaker,
+  voteHandler,
+} from "../utils/api";
 
 export const useUserMutations = () => {
   const queryClient = useQueryClient();
@@ -14,7 +19,7 @@ export const useUserMutations = () => {
   return { editProfileMutation };
 };
 
-export const usePollMutations = () => {
+export const usePollMutations = (id) => {
   const queryClient = useQueryClient();
 
   const castVoteMutation = useMutation({
@@ -24,5 +29,25 @@ export const usePollMutations = () => {
     },
   });
 
-  return { castVoteMutation };
+  const makeProposal = useMutation({
+    mutationFn: proposalmaker,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["demands"],
+        queryKey: ["demands", id],
+      });
+    },
+  });
+
+  const acceptProposal = useMutation({
+    mutationFn: proposalacceptor,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["demands"],
+        queryKey: ["demands", id],
+      });
+    },
+  });
+
+  return { castVoteMutation, makeProposal, acceptProposal };
 };

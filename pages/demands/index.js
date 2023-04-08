@@ -1,7 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { usePolls } from "../../hooks/queries";
 import { usePollMutations } from "../../hooks/mutations";
+import Link from "next/link";
 
 const PollsPage = () => {
   const { demands, isError, error, isLoading } = usePolls();
@@ -19,7 +18,9 @@ const PollsPage = () => {
     <div>
       {demands?.map((el) => (
         <div key={el._id} className="my-4">
-          <div>{el.title}</div>
+          <div>
+            <Link href={`/demands/${el._id}`}>{el.title}</Link>
+          </div>
           <div>{el.description}</div>
           <div>{el.location}</div>
           <div>{JSON.stringify(el.creator)}</div>

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPollsData, getUserData } from "../utils/api";
+import { getPollData, getPollsData, getUserData } from "../utils/api";
 
 export const useUser = () => {
   const {
@@ -27,4 +27,18 @@ export const usePolls = () => {
   });
 
   return { isLoading, isError, error, demands };
+};
+
+export const usePoll = (id) => {
+  const {
+    isLoading,
+    error,
+    isError,
+    data: demand,
+  } = useQuery({
+    queryKey: ["demands", id],
+    queryFn: () => getPollData(id),
+  });
+
+  return { isLoading, isError, error, demand };
 };

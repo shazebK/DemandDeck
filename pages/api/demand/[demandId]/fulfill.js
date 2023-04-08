@@ -11,61 +11,64 @@ const handler = async (req, res) => {
   connectDB();
   const sess = await getServerSession(req, res, authOptions);
 
-  // if (!sess) {
-  //   return res.status(200).json({ msg: "Not Authorized" });
-  // } else {
-  //Admin route
-  // const { id,role } = sess.user;
-  //if(role !== "admin") return;
+  if (!sess) {
+    return res.status(200).json({ msg: "Not Authorized" });
+  } else {
+    const { id: owner, role } = sess.user;
+    if (role !== "admin") return;
 
-  if (req.method == "POST") {
-    const { owner } = req.body;
-    const { demandId } = req.query;
+    if (req.method == "POST") {
+      const { demandId } = req.query;
 
-    //setting up a temporary business session
+      //setting up a temporary business session
 
-    const tempBusiness = await Business.create({
-      owner,
-      onRequest: demandId,
-    });
+      const tempBusiness = await Business.create({
+        owner,
+        onRequest: demandId,
+      });
 
-    //activate the session in the demand for users
+      //activate the session in the demand for users
 
-    const dem = await Demand.findById(demandId);
-    dem.active = tempBusiness._id;
+      const dem = await Demand.findById(demandId);
+      dem.active = tempBusiness._id;
 
-    //add in the businesslist of owner
+      //add in the businesslist of owner
 
-    const busOwner = await User.findById(owner);
-    busOwner.businesses.push(tempBusiness._id);
+      const busOwner = await User.findById(owner);
+      busOwner.businesses.push(tempBusiness._id);
 
-    await busOwner.save();
+      await busOwner.save();
 
-    //activate the proposal status
+      //activate the proposal status
 
-    const proposal = await Proposal.findOne({
-      demand: demandId,
-      creator: owner,
-    });
+      const proposal = await Proposal.findOne({
+        demand: demandId,
+        creator: owner,
+      });
 
-    proposal.status = "acc";
+      console.log(proposal);
 
-    const restProposals = await Proposal.find({
-      demand: demandId,
-    });
+      proposal.status = "acc";
 
-    for (let prop of restProposals) {
-      //parse it here?
-      if (prop._id !== proposal._id)
-        await Proposal.findByIdAndUpdate(prop._id, { status: "inqueue" });
+      const restProposals = await Proposal.find({
+        demand: demandId,
+      });
+
+      for (let prop of restProposals) {
+        //parse it here?
+        if (
+          JSON.parse(JSON.stringify(prop._id)) !==
+          JSON.parse(JSON.stringify(proposal._id))
+        )
+          await Proposal.findByIdAndUpdate(prop._id, { status: "inqueue" });
+      }
+
+      await proposal.save();
+      await dem.save();
+
+      res.status(201).json({ msg: "Success" });
     }
-
-    await proposal.save();
-    await dem.save();
-
-    res.status(201).json({ msg: "Success" });
   }
-  // }
 };
 
 export default handler;
