@@ -3,6 +3,8 @@ import Demand from "../../../models/Demand.js";
 import connectDB from "../../../utils/db.js";
 import { authOptions } from "../auth/[...nextauth].js";
 import User from "../../../models/User.js";
+import Proposal from "../../../models/Proposal.js";
+import Business from "../../../models/Business.js";
 
 const handler = async (req, res) => {
   connectDB();
@@ -17,10 +19,12 @@ const handler = async (req, res) => {
         .populate({
           path: "creator",
           select: "name email _id",
+          model: User,
         })
         .populate({
-          path: "requesters",
-          select: "name email _id",
+          path: "proposals",
+          // select: "name email _id",
+          model: Proposal,
         })
         .populate({
           path: "responses",
@@ -28,6 +32,16 @@ const handler = async (req, res) => {
             path: "user",
             select: "name email _id",
           },
+        })
+        .populate({
+          path: "active",
+          select: "title description _id",
+          populate: {
+            path: "benefeciaries",
+            select: "name email _id",
+            model: User,
+          },
+          model: Business,
         });
       res.status(200).json(demand);
     } else if (req.method == "POST") {
