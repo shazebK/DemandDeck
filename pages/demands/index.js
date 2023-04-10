@@ -7,6 +7,8 @@ const PollsPage = () => {
   const { castVoteMutation } = usePollMutations();
   console.log(demands);
 
+  console.log(demands);
+
   const voteHandler = async (id) => {
     castVoteMutation.mutate({
       response: false,
