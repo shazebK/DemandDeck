@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const Navbar = () => {
   const { user, isLoading, isError, error } = useUser();
 
   return (
-    <div className="navbar bg-blue-600 text-white font-bold text-xl px-4 sticky top-0">
+    <div className="navbar bg-blue-600 text-white font-bold text-xl px-4 sticky top-0 z-10">
       <Link className="flex-1" href={"/"}>
         DemandDeck
       </Link>
