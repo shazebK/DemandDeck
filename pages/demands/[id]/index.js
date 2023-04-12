@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { usePoll } from "../../../hooks/queries";
 import { usePollMutations } from "../../../hooks/mutations";
+import { DemandPageComponent } from "../../../components/DemandPage";
 
 const DemandPage = () => {
   const router = useRouter();
@@ -16,10 +17,23 @@ const DemandPage = () => {
     acceptProposal.mutate({ id, owner: JSON.parse(JSON.stringify(ownerId)) });
   };
 
+  if (isLoading) return <p>Loading</p>;
+
   return (
     <div>
-      {JSON.stringify(demand)}
-      {demand?.proposals.map((prop) => (
+      <DemandPageComponent
+        description={demand.description}
+        location={demand.location}
+        title={demand.title}
+        id={demand._id}
+        numprop={demand.proposals.length}
+        numresp={demand.responses.length}
+        key={demand._id}
+        tags={[]}
+        proposals={demand.proposals}
+      />
+
+      {demand?.proposals?.map((prop) => (
         <div className="my-6">
           <div>{JSON.stringify(prop)}</div>
           <button
@@ -30,6 +44,7 @@ const DemandPage = () => {
           </button>
         </div>
       ))}
+
       {demand?.active && (
         <div
           className="btn btn-primary"
@@ -42,14 +57,6 @@ const DemandPage = () => {
           Go to Business
         </div>
       )}
-      <div
-        className="btn btn-primary"
-        onClick={() => {
-          router.push(`/demands/${id}/proposal`);
-        }}
-      >
-        Propose?
-      </div>
     </div>
   );
 };
