@@ -4,8 +4,8 @@ import { LocationOn, ThumbUp } from '@mui/icons-material'
 
 export default function DemandPage() {
   return (
-    <div className = "w-full p-4">
-    <div id="service" className='w-full md:w-2/5 mx-auto mt-20'>
+  <div className = "w-full p-4">
+    <div id="service" className='w-full md:w-2/5 mx-auto mt-12'>
 
     <div className = "w-full h-60 bg-sec text-white rounded-2xl flex flex-col justify-center items-center">
         <h2 className='text-[48px] font-semibold'>1564</h2>
@@ -47,45 +47,27 @@ export default function DemandPage() {
         </div>
     </div>
     <div id = "applications" className='my-8'>
-        <h2 className='text-[20px] font-semibold'>21 Applications Requested</h2>
-        {/* <div className="carousel w-4/5 h-72mx-auto">
-  <div id="slide1" className="carousel-item relative w-full">
-        <div className='bg-gray-500 w-4/5 h-4/5'></div>
-  </div> 
-  <div id="slide2" className="carousel-item relative w-full">
-    <img src="/images/stock/photo-1609621838510-5ad474b7d25d.jpg" className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+    <div className="carousel w-11/12 md:w-4/5 h-96 mx-auto border-2 rounded-xl relative">
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 z-10">
+      <button className='btn btn-circle'>❮</button>
+      <button className='btn btn-circle'>❯</button>
     </div>
-  </div> 
-  <div id="slide3" className="carousel-item relative w-full">
-    <img src="/images/stock/photo-1414694762283-acccc27bca85.jpg" className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-
     </div>
-  </div> 
-  <div id="slide4" className="carousel-item relative w-full">
-    <img src="/images/stock/photo-1665553365602-b2fb8e5d1707.jpg" className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide3" className="btn btn-circle">❮</a> 
-      <a href="#slide1" className="btn btn-circle">❯</a>
     </div>
-  </div> 
-  </div> */}
-</div>
-<div id = "resources" className='my-8'>
+    <div id = "resources" className='my-8'>
 <h2 className='text-[20px] font-semibold my-2'>Resources Offered</h2>
     <ul className='list-disc px-8'>
         <li>Approval of Hostel Warden</li>
         <li>Land</li>
         <li>Water</li>
     </ul>
-</div>
-<div id = "location" className='my-8'>
+    </div>
+    <div id = "location" className='my-8'>
 <h2 className='text-[20px] font-semibold my-2'>Location</h2>
 <div className='w-full md:w-3/5 h-72'>
     <img src = "https://k8q3f6p8.rocketcdn.me/wp-content/uploads/2019/05/Google-Maps-Tips.png" className='h-full w-full object-cover'/>
 </div>
-</div>
+    </div>
 </div>
   )
 }
