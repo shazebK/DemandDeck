@@ -32,6 +32,8 @@ export const BusinessSchema = new mongoose.Schema({
       ref: "Resource",
     },
   ],
+  location: String,
+  tags: [String],
 });
 
 const Business =

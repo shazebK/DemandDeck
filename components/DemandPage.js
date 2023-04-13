@@ -1,73 +1,113 @@
-import React from 'react'
-import Avatar from './UI/Avatar'
-import { LocationOn, ThumbUp } from '@mui/icons-material'
+import React from "react";
+import Avatar from "./UI/Avatar";
+import { LocationOn, ThumbUp } from "@mui/icons-material";
+import { usePollMutations } from "../hooks/mutations";
+import { useRouter } from "next/router";
 
-export default function DemandPage() {
+export const DemandPageComponent = ({
+  numresp,
+  id,
+  title,
+  description,
+  numprop,
+  location,
+  tags,
+  proposals,
+}) => {
+  const { castVoteMutation } = usePollMutations();
+
+  const voteHandler = () => {
+    castVoteMutation.mutate({
+      response: false,
+      id,
+    });
+  };
+
+  const router = useRouter();
+
   return (
-  <div className = "w-full p-4">
-    <div id="service" className='w-full md:w-2/5 mx-auto mt-12'>
-
-    <div className = "w-full h-60 bg-sec text-white rounded-2xl flex flex-col justify-center items-center">
-        <h2 className='text-[48px] font-semibold'>1564</h2>
-        <h4>Asked For This Service</h4>
-    <div className = "w-20 relative">
-    <Avatar src = "https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" className = "absolute left-0"/>
-    <Avatar src = "https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" className= "absolute left-4"/>
-    <Avatar src = "https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" className= "absolute left-8"/>
-    </div>
-    </div>
-    <div className='w-full mt-8 flex justify-between items-center'>
-        <h2 className='text-[32px] font-medium'>Upvote Here</h2>
-        <div className='h-20 w-20 flex items-center justify-center rounded-full bg-[#38EA35] text-white'>
-            <ThumbUp className = "text-[48px] cursor-pointer"/>
+    <div className="w-full p-4">
+      <div id="service" className="w-full md:w-2/5 mx-auto mt-20">
+        <div className="w-full h-60 bg-sec text-white rounded-2xl flex flex-col justify-center items-center">
+          <h2 className="text-[48px] font-semibold"> {numresp} </h2>
+          <h4>Asked For This Service</h4>
+          <div className="w-20 relative">
+            <Avatar
+              src="https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
+              className="absolute left-0"
+            />
+            <Avatar
+              src="https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
+              className="absolute left-4"
+            />
+            <Avatar
+              src="https://static.vecteezy.com/system/resources/previews/002/002/403/original/man-with-beard-avatar-character-isolated-icon-free-vector.jpg"
+              className="absolute left-8"
+            />
+          </div>
         </div>
-    </div>
-    </div>
-    <div id = "title" className='mt-8 mb-4'>
-        <h1 className='text-[24px] md:text-[32px] font-bold'>Laundary Services Required</h1>
-        <h6 className='text-[12px] text-gray-500'>
-        <LocationOn/> 
-        6A/155 I.T Crossing Faizabad Road,Lucknow
+        <div className="w-full mt-8 flex justify-between items-center">
+          <h2 className="text-[32px] font-medium">Upvote Here</h2>
+          <div
+            className="h-20 w-20 flex items-center justify-center rounded-full bg-[#38EA35] text-white"
+            onClick={voteHandler}
+          >
+            <ThumbUp className="text-[48px] cursor-pointer" />
+          </div>
+        </div>
+        <div className="w-full mt-8 flex justify-between items-center transition-all hover:scale-105 cursor-pointer">
+          <h2
+            className="text-[32px] font-medium bg-sec p-4 rounded-lg text-white"
+            onClick={() => {
+              router.push(`/demands/${id}/proposal`);
+            }}
+          >
+            Submit a proposal
+          </h2>
+        </div>
+      </div>
+      <div id="title" className="mt-8 mb-4">
+        <h1 className="text-[24px] md:text-[32px] font-bold">{title}</h1>
+        <h6 className="text-[12px] text-gray-500">
+          <LocationOn />
+          6A/155 I.T Crossing Faizabad Road,Lucknow
         </h6>
-        <hr className='mt-1'/>
-    </div>
-    <div id = "description my-4">
-        <h2 className='text-[20px] font-semibold my-2'>Description</h2>
-        <div className='w-full md:w-3/5 my-4'>
-        <p>We are getting very tired by washing our clothes ourself, 
-        We are very lazy group of people and dont want to wash clothes, 
-        So we want a Laundary Service on regular basis. 
-        Various Resources would be provided with if joined.</p>
+        <hr className="mt-1" />
+      </div>
+      <div id="description my-4">
+        <h2 className="text-[20px] font-semibold my-2">Description</h2>
+        <div className="w-full md:w-3/5 my-4">
+          <p>{description}</p>
         </div>
-        <div className='w-full md:w-3/5 grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2'>
-          <p className='text-gray-500'>Laundary</p>
-          <p className='text-gray-500'>Clothes</p>
-          <p className='text-gray-500'>Hostel</p>
-          <p className='text-gray-500'>Dhobi</p>
+        <div className="w-full md:w-3/5 grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2">
+          {tags?.map((el) => (
+            <p className="text-gray-500">{el}</p>
+          ))}
         </div>
+      </div>
+      <div id="applications" className="my-8">
+        <h2 className="text-[20px] font-semibold">
+          {" "}
+          {numprop} Applications Requested
+        </h2>
+      </div>
+      <div id="resources" className="my-8">
+        <h2 className="text-[20px] font-semibold my-2">Resources Offered</h2>
+        <ul className="list-disc px-8">
+          <li>Approval of Hostel Warden</li>
+          <li>Land</li>
+          <li>Water</li>
+        </ul>
+      </div>
+      <div id="location" className="my-8">
+        <h2 className="text-[20px] font-semibold my-2"> {location} </h2>
+        <div className="w-full md:w-3/5 h-72">
+          <img
+            src="https://k8q3f6p8.rocketcdn.me/wp-content/uploads/2019/05/Google-Maps-Tips.png"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
     </div>
-    <div id = "applications" className='my-8'>
-    <div className="carousel w-11/12 md:w-4/5 h-96 mx-auto border-2 rounded-xl relative">
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 z-10">
-      <button className='btn btn-circle'>❮</button>
-      <button className='btn btn-circle'>❯</button>
-    </div>
-    </div>
-    </div>
-    <div id = "resources" className='my-8'>
-<h2 className='text-[20px] font-semibold my-2'>Resources Offered</h2>
-    <ul className='list-disc px-8'>
-        <li>Approval of Hostel Warden</li>
-        <li>Land</li>
-        <li>Water</li>
-    </ul>
-    </div>
-    <div id = "location" className='my-8'>
-<h2 className='text-[20px] font-semibold my-2'>Location</h2>
-<div className='w-full md:w-3/5 h-72'>
-    <img src = "https://k8q3f6p8.rocketcdn.me/wp-content/uploads/2019/05/Google-Maps-Tips.png" className='h-full w-full object-cover'/>
-</div>
-    </div>
-</div>
-  )
-}
+  );
+};
