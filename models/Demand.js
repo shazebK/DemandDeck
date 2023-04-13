@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { ResponseSchema } from "./Response";
+import { ResourceProposalSchema } from "./Resources";
 
 const DemandSchema = new mongoose.Schema({
   title: {
@@ -28,8 +29,8 @@ const DemandSchema = new mongoose.Schema({
   ],
 
   location: String,
-
   responses: [ResponseSchema],
+  resoursesPromised: [ResourceProposalSchema],
 });
 
 const Demand =

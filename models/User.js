@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { ResourceClassifnSchema } from "./Resources";
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -25,12 +26,7 @@ const UserSchema = new mongoose.Schema({
       ref: "Demand",
     },
   ],
-  resources: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Resource",
-    },
-  ],
+  resourcesClassified: ResourceClassifnSchema,
   businesses: [
     {
       type: mongoose.Schema.Types.ObjectId,
