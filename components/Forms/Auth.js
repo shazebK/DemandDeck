@@ -13,8 +13,8 @@ export default function Auth() {
           <h3 className='text-[20px] md:text-[24px]'>Sign Up to continue</h3>
           <SignUp/>
           <div className='w-full h-24 flex flex-col md:flex-row justify-between items-center'>
-          <button className="btn w-40 rounded-full border-none bg-sec hover:bg-sec-dark">SignUp</button>
-          <p className='text-gray-500 cursor-pointer'>Forget Password?</p>
+          
+          <p className='text-gray-500 cursor-pointer'>Forget Password?</p><button className="btn w-40 rounded-full border-none bg-sec hover:bg-sec-dark">SignUp</button>
           </div>
         </div>
     </div>
