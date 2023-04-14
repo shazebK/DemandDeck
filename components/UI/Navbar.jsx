@@ -18,8 +18,8 @@ const Navbar = () => {
   const { user, isLoading, isError, error } = useUser();
   const [toggle, setToggle] = useState(false);
   return (
-    <div className="navbar justify-between bg-prim fixed top-0 z-10">
-      <h1 className="text-xl font-bold text-white">DemandDeck</h1>
+    <div className="navbar justify-between bg-prim sticky top-0 z-10">
+      <Link href = "/" className="text-xl font-bold text-white">DemandDeck</Link>
       {toggle ? (
         <AiOutlineClose
           onClick={() => setToggle(!toggle)}
@@ -33,7 +33,7 @@ const Navbar = () => {
       )}
       <div className="w-1/3 hidden md:flex justify-between text-white">
         <Link href = "/">Home</Link>
-        <Link href = "/all_demands">Demands</Link>
+        <Link href = "/demands">Demands</Link>
         <Link href = "/create">Create</Link>
       </div>
 
@@ -47,7 +47,7 @@ const Navbar = () => {
        ${toggle ? "left-[0]" : "left-[-100%]"}  `}
       >
         <Link href = "/">Home</Link>
-        <Link href = "/all_demands">Demands</Link>
+        <Link href = "/demands">Demands</Link>
         <Link href = "/create">Create</Link>
         <Link href = "/authentication">Login</Link>
         </div>
