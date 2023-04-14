@@ -26,13 +26,14 @@ const UserSchema = new mongoose.Schema({
       ref: "Demand",
     },
   ],
-  resourcesClassified: ResourceClassifnSchema,
+  resourcesClassified: { type: ResourceClassifnSchema },
   businesses: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Business",
     },
   ],
+  location: String,
 });
 
 const User = mongoose.models?.User || mongoose.model("User", UserSchema);

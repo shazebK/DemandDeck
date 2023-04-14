@@ -26,10 +26,26 @@ export const BusinessSchema = new mongoose.Schema({
   start: Date,
   end: Date,
   reviews: [RatingSchema],
-  resourcesNeeded: [
+  resourcesRequested: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Resource",
+      resource: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Resource",
+      },
+      from: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+      quantity: Number,
+    },
+  ],
+  resources: [
+    {
+      resource: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Resource",
+      },
+      quantity: Number,
     },
   ],
   location: String,

@@ -1,13 +1,24 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { usePollMutations } from "../../../hooks/mutations";
+import axios from "axios";
 
 const ProposalCreate = () => {
   const router = useRouter();
   const { id } = router.query;
-
   const { makeProposal } = usePollMutations(id);
+
+  const [resouces, setResources] = useState([]);
+
+  useEffect(() => {
+    const helper = async () => {
+      const { data } = await axios.get("/api/resource");
+      setResources(data);
+    };
+
+    helper();
+  }, []);
 
   return (
     <div>
@@ -36,6 +47,7 @@ const ProposalCreate = () => {
       >
         Go back
       </button>
+      {JSON.stringify(resouces)}
     </div>
   );
 };

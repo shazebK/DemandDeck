@@ -13,6 +13,8 @@ const handler = async (req, res) => {
       email,
       role: "admin",
     });
+    user.resourcesClassified = { available: [], proposed: [], allocated: [] };
+    await user.save();
     res.status(201).json(user);
   }
 };

@@ -8,10 +8,6 @@ const ResourceSchema = new mongoose.Schema({
     type: String,
   },
   basePrice: Number,
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
 });
 
 export const ResourceClassifnSchema = new mongoose.Schema(
@@ -25,15 +21,15 @@ export const ResourceClassifnSchema = new mongoose.Schema(
         quantity: Number,
       },
     ],
-    proposed: [
+    requests: [
       {
         resource: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Resource",
         },
-        demand: {
+        business: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Demand",
+          ref: "Business",
         },
         quantity: Number,
         price: Number,
