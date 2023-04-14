@@ -71,7 +71,7 @@ const handler = async (req, res) => {
         JSON.parse(JSON.stringify(proposed._id))
       ) {
         await Proposal.findByIdAndUpdate(prop._id, {
-          status: "reconsiderations",
+          status: "req",
         });
       }
     }

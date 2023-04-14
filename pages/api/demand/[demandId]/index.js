@@ -26,6 +26,11 @@ const handler = async (req, res) => {
           path: "proposals",
           // select: "name email _id",
           model: Proposal,
+          populate: {
+            path: "creator",
+            select: "name email _id",
+            model: User,
+          },
         })
         .populate({
           path: "responses",

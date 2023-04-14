@@ -17,8 +17,11 @@ const handler = async (req, res) => {
     if (role !== "admin") return;
 
     if (req.method == "POST") {
+      console.log(req.body);
       const { demandId } = req.query;
       const { owner } = req.body;
+
+      console.log(demandId, owner);
 
       //setting up a temporary business session
 

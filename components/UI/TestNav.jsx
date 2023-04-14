@@ -23,7 +23,7 @@ const TestNav = () => {
         DemandDeck
       </Link>
       <div>
-        <Link href={"/poll"}>New Poll</Link>
+        <Link href={"/demands/new"}>New Poll</Link>
         {!!session && (
           <Link className="btn btn-ghost rounded-full" href={"/auth/profile"}>
             {isLoading ? "Loading" : user?.name}

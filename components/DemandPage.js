@@ -13,6 +13,7 @@ export const DemandPageComponent = ({
   location,
   tags,
   proposals,
+  active,
 }) => {
   const { castVoteMutation } = usePollMutations();
 
@@ -88,7 +89,7 @@ export const DemandPageComponent = ({
       <div id="applications" className="my-8">
         <h2 className="text-[20px] font-semibold">
           {" "}
-          {numprop} Applications Requested
+          {numprop} Applications {active ? "Closed" : "Requested"}
         </h2>
       </div>
       <div id="resources" className="my-8">

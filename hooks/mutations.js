@@ -1,5 +1,6 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import {
+  demandCreator,
   editUserData,
   proposalacceptor,
   proposalmaker,
@@ -49,5 +50,14 @@ export const usePollMutations = (id) => {
     },
   });
 
-  return { castVoteMutation, makeProposal, acceptProposal };
+  const createDemand = useMutation({
+    mutationFn: demandCreator,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["demands"],
+      });
+    },
+  });
+
+  return { castVoteMutation, makeProposal, acceptProposal, createDemand };
 };

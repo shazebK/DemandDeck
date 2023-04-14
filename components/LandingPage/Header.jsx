@@ -23,7 +23,9 @@ export default function Header() {
           <li>Demands</li>
           <li>Create</li>
           <li>
-          <button className="bg-white hover:bg-magenta-700 text-black font-bold py-0.2 px-10 rounded-full ">Login</button>
+            <button className="bg-white hover:bg-magenta-700 text-black font-bold py-0.2 px-10 rounded-full ">
+              Login
+            </button>
           </li>
         </ul>
         {/* Responsive Menu */}

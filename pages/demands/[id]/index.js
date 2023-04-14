@@ -3,14 +3,13 @@ import React from "react";
 import { usePoll } from "../../../hooks/queries";
 import { usePollMutations } from "../../../hooks/mutations";
 import { DemandPageComponent } from "../../../components/DemandPage";
+import Proposal from "../../../components/Demand/Proposal";
 
 const DemandPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
   const { demand, isError, isLoading, error } = usePoll(id);
-  console.log(demand);
-
   const { acceptProposal } = usePollMutations(id);
 
   const proposalAcceptHandler = (ownerId) => {
@@ -31,19 +30,19 @@ const DemandPage = () => {
         key={demand._id}
         tags={[]}
         proposals={demand.proposals}
+        active={demand.active}
       />
 
-      {demand?.proposals?.map((prop) => (
-        <div className="my-6">
-          <div>{JSON.stringify(prop)}</div>
-          <button
-            className="btn btn-primary"
-            onClick={() => proposalAcceptHandler(prop.creator)}
-          >
-            Approve
-          </button>
-        </div>
-      ))}
+      {demand?.proposals?.map(
+        (prop) =>
+          prop.status === "req" && (
+            <Proposal
+              proposal={prop}
+              demandId={id}
+              proposalAcceptHandler={proposalAcceptHandler}
+            />
+          )
+      )}
 
       {demand?.active && (
         <div

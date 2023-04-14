@@ -8,12 +8,14 @@ const ProposalCreate = () => {
   const router = useRouter();
   const { id } = router.query;
   const { makeProposal } = usePollMutations(id);
-
   const [resouces, setResources] = useState([]);
 
   useEffect(() => {
     const helper = async () => {
-      const { data } = await axios.get("/api/resource");
+      const { data } = await axios.post(`/api/demand/${id}/resource`, {
+        location: "",
+        services: [],
+      });
       setResources(data);
     };
 

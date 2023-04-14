@@ -47,3 +47,7 @@ export const voteHandler = async (payload) => {
     response,
   });
 };
+
+export const demandCreator = async (payload) => {
+  return await axios.post("/api/demand", payload);
+};

@@ -10,8 +10,9 @@ const handler = async (req, res) => {
   //   } else {
   // const { id } = sess.user;
 
-  if (req.method == "GET") {
-    const { location, services, id, demandId } = req.body;
+  if (req.method == "POST") {
+    console.log(req.body);
+    const { location, services } = req.body;
     const providers = await User.find({ location /* role: "allocator"  */ })
       .populate({
         path: "resourcesClassified",

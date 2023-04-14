@@ -5,6 +5,7 @@ import DemandsPage from "../../components/DemandsPage";
 
 const PollsPage = () => {
   const { demands, isError, error, isLoading } = usePolls();
+  console.log("demands");
 
   return (
     <div>
