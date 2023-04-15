@@ -21,7 +21,7 @@ const AvailableResource = ({ res, requested, allocated }) => {
 
   return (
     <div className="">
-      {JSON.stringify(res)}
+      {/* {JSON.stringify(res)} */}
       <div className="m-2 bg-slate-700 text-white rounded-lg p-4">
         <div>{requested && <p className="text-white">Requested</p>}</div>
         <div>{allocated && <p className="text-white">Allocated</p>}</div>

@@ -29,6 +29,7 @@ const DemandSchema = new mongoose.Schema({
   ],
 
   location: String,
+  tags: [String],
   responses: [ResponseSchema],
   resoursesPromised: [ResourceProposalSchema],
 });

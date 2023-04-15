@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import DropDownCard from "./Forms/vendor_signup_components/DropDownCard";
 import { useFormik } from "formik";
+import { usePollMutations } from "../hooks/mutations";
+import { useRouter } from "next/router";
 
 export default function CreatePage() {
   const [tags, setTags] = useState([]);
@@ -16,7 +18,7 @@ export default function CreatePage() {
   };
 
   const initialValues = {
-    category: "",
+    // category: "",
     title: "",
     description: "",
     state: "",
@@ -24,15 +26,29 @@ export default function CreatePage() {
     area: "",
   };
 
+  const router = useRouter();
+  const { createDemand } = usePollMutations();
+
   const onSubmit = (values) => {
-    console.log(values, tags);
+    // console.log(values, tags);
+    // console.log(values.state + "," + values.city + "," + values.area);
+    createDemand.mutate({
+      title: values.title,
+      description: values.description,
+      location: values.state + "," + values.city + "," + values.area,
+      tags,
+    });
+
+    if (createDemand.isSuccess) {
+      router.push("/demands");
+    }
   };
 
   const validate = (values) => {
     const errors = {};
-    if (!values.category) {
-      errors.category = "Category Required";
-    }
+    // if (!values.category) {
+    //   errors.category = "Category Required";
+    // }
 
     if (!values.title) {
       errors.title = "Title Required";
@@ -70,8 +86,8 @@ export default function CreatePage() {
       <form onSubmit={formik.handleSubmit}>
         <div className="w-full md:w-1/2 mx-auto my-8">
           <div className="my-4">
-            <h3 className="text-xl font-semibold my-4">Category</h3>
-            <select
+            {/* <h3 className="text-xl font-semibold my-4">Category</h3> */}
+            {/* <select
               className="select select-bordered w-full focus:outline-none"
               name="category"
               value={formik.values.category}
@@ -86,7 +102,7 @@ export default function CreatePage() {
             </select>
             {formik.touched.category && formik.errors.category && (
               <span className="text-red-500">{formik.errors.category}</span>
-            )}
+            )} */}
           </div>
 
           <div className="my-8">
