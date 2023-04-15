@@ -1,7 +1,7 @@
 import { usePolls } from "../../hooks/queries";
 import { usePollMutations } from "../../hooks/mutations";
 import Link from "next/link";
-import DemandsPage from "../../components/DemandsPage";
+import DemandsPage from "../../components/Demand/DemandsPage";
 
 const PollsPage = () => {
   const { demands, isError, error, isLoading } = usePolls();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import DropDownCard from "./Forms/vendor_signup_components/DropDownCard";
+import DropDownCard from "../Forms/vendor_signup_components/DropDownCard";
 import { useFormik } from "formik";
-import { usePollMutations } from "../hooks/mutations";
+import { usePollMutations } from "../../hooks/mutations";
 import { useRouter } from "next/router";
 
 export default function CreatePage() {

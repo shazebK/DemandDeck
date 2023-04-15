@@ -1,7 +1,7 @@
 import { InputAdornment, OutlinedInput } from "@mui/material";
 import React, { useState } from "react";
 import { Search, Tune, Favorite, LocationOn } from "@mui/icons-material";
-import DemandCard from "./DemandCard";
+import DemandCard from "../DemandCard";
 
 export default function DemandsPage({ demands }) {
   return (

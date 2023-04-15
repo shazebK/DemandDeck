@@ -3,6 +3,7 @@ import { useBusiness } from "../../../hooks/queries";
 import { useRouter } from "next/router";
 import Business from "../../../components/Business/Business";
 import axios from "axios";
+import SessionPage from "../../../components/Business/SessionPage";
 
 const BusinessPage = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const BusinessPage = () => {
           Terminate!
         </button>
       </div>
+      <SessionPage />
     </div>
   );
 };

@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import React from "react";
 import { usePoll } from "../../../hooks/queries";
 import { usePollMutations } from "../../../hooks/mutations";
-import { DemandPageComponent } from "../../../components/DemandPage";
+
 import Proposal from "../../../components/Demand/Proposal";
+import { DemandPageComponent } from "../../../components/Demand/DemandPage";
 
 const DemandPage = () => {
   const router = useRouter();

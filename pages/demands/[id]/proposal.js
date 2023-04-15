@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { usePollMutations } from "../../../hooks/mutations";
 import axios from "axios";
+import ProposalPage from "../../../components/ProposalPage";
 
 const ProposalCreate = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const ProposalCreate = () => {
         Go back
       </button>
       {JSON.stringify(resouces)}
+      <ProposalPage />
     </div>
   );
 };

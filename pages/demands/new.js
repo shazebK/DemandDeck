@@ -1,5 +1,5 @@
 import React from "react";
-import CreatePage from "../../components/CreatePage";
+import CreatePage from "../../components/Demand/CreatePage";
 
 const CreateDemand = () => {
   return (
