@@ -26,7 +26,7 @@ export default function Plans() {
                 onClick={() => setShowContent1(!showContent1)}
                 class="bg-pink hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               >
-                  {showContent1 ? "Hide Content" : "Show Content"}
+                {showContent1 ? "Hide Content" : "Show Content"}
               </button>
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function Plans() {
                 onClick={() => setShowContent3(!showContent3)}
                 class="bg-pink hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
               >
-                  {showContent3 ? "Hide Content" : "Show Content"}
+                {showContent3 ? "Hide Content" : "Show Content"}
               </button>
             </div>
           </div>
