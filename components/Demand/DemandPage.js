@@ -1,8 +1,10 @@
 import React from "react";
-import Avatar from "./UI/Avatar";
+
 import { LocationOn, ThumbUp } from "@mui/icons-material";
-import { usePollMutations } from "../hooks/mutations";
+
 import { useRouter } from "next/router";
+import { usePollMutations } from "../../hooks/mutations";
+import Avatar from "../UI/Avatar";
 
 export const DemandPageComponent = ({
   numresp,

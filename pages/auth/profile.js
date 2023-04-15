@@ -2,6 +2,8 @@ import React from "react";
 import { useUserMutations } from "../../hooks/mutations";
 import { useUser } from "../../hooks/queries";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import SessionPage from "../../components/Business/SessionPage";
+import UserPage from "../../components/UserPage";
 
 const ProfilePage = () => {
   const { editProfileMutation } = useUserMutations();
@@ -28,6 +30,7 @@ const ProfilePage = () => {
           </button>
         </Form>
       </Formik>
+      <UserPage />
     </div>
   );
 };
