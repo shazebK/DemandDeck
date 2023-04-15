@@ -16,6 +16,7 @@ const TestNav = () => {
   };
 
   const { user, isLoading, isError, error } = useUser();
+  console.log(user);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="navbar bg-blue-600 text-white font-bold text-xl px-4 sticky top-0 z-10">
@@ -23,7 +24,9 @@ const TestNav = () => {
         DemandDeck
       </Link>
       <div>
-        <Link href={"/demands/new"}>New Poll</Link>
+        <Link href={"/demands/new"} className="btn btn-ghost rounded-lg">
+          New Poll
+        </Link>
         {!!session && (
           <Link className="btn btn-ghost rounded-full" href={"/auth/profile"}>
             {isLoading ? "Loading" : user?.name}

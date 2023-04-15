@@ -24,30 +24,11 @@ const ProposalCreate = () => {
   }, []);
 
   return (
-    <div>
-      <Formik
-        initialValues={{
-          description: "",
-        }}
-        onSubmit={(values) => {
-          makeProposal.mutate({ ...values, id });
-          router.push(`/demands/${id}`);
-        }}
-      >
-        <Form className="flex flex-col items-start">
-          <label htmlFor="">description</label>
-          <Field type="text" name="description" />
-          <ErrorMessage name="description" component="div" />
-
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </Form>
-      </Formik>
+    <div className="flex items-center justify-center flex-col mt-12">
       {/* {JSON.stringify(resouces)} */}
       <ProposalPage id={id} />
       <button
-        className="btn btn-primary"
+        className="btn btn-primary my-4"
         onClick={() => router.push(`/demands/${id}`)}
       >
         Go back
