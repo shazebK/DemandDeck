@@ -4,17 +4,16 @@ import React from 'react'
 
 export default function Chat() {
   return (
-    <div className='w-full h-full flex flex-col justify-between'>
-    <div id = "messageArea" className='h-full'></div>
+    <div className='flex flex-col'>
+    <div id = "messageArea" className='w-full flex-1 bg-red-500'>
 
-    <div className="form-control">
-      <div className="input-group">
+    </div>
+        <div className = "flex">
         <input type="text" placeholder="Message" className="input input-bordered w-full focus:outline-none"/>
-        <button className="btn btn-square p-0">
+        <button className="btn btn-square">
           <Send/>
         </button>
-      </div>
-    </div>
+        </div>
   </div>
   )
 }

@@ -3,14 +3,15 @@ import React from 'react'
 import Dashboard from './Dashboard'
 import Request from "./Request";
 import Sidebar from './Sidebar'
+import Review from "./Review";
 
 export default function SessionPage() {
   return (
-    <>
-        <Sidebar/>
-        <div className="ml-60 w-4/5">
-          <Dashboard/>
+    <div className="flex">
+        <Sidebar />
+        <div className = "w-3/4">
+          <Review/>
         </div>
-    </>
+    </div>
   )
 }
