@@ -44,14 +44,14 @@ const ProposalCreate = () => {
           </button>
         </Form>
       </Formik>
+      {/* {JSON.stringify(resouces)} */}
+      <ProposalPage id={id} />
       <button
         className="btn btn-primary"
         onClick={() => router.push(`/demands/${id}`)}
       >
         Go back
       </button>
-      {JSON.stringify(resouces)}
-      <ProposalPage />
     </div>
   );
 };

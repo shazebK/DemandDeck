@@ -24,7 +24,7 @@ export const getBusiness = async (id) => {
 
 export const proposalmaker = async (payload) => {
   const { id, description } = payload;
-  console.log(payload);
+  console.log("pl", payload);
   const { data } = await axios.post(`/api/demand/${id}/request`, {
     description,
   });
