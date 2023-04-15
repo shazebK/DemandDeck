@@ -34,6 +34,11 @@ const handler = async (req, res) => {
       quantity,
     });
 
+    const temp = business.resourcesRequested.filter(
+      (el) => JSON.parse(JSON.stringify(el.resource)) !== itemId
+    );
+    business.resourcesRequested = temp;
+
     await allocator.save();
     await business.save();
 
