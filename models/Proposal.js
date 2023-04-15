@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 const ProposalSchema = new mongoose.Schema({
+  title: String,
+
   description: {
     type: String,
   },
