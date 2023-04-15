@@ -1,24 +1,23 @@
 import React from "react";
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import Footer from './components/Footer';
-import Plans from './components/Plans';
+import Header from "./Header";
+import SearchBar from "./SearchBar";
+import Plans from "./Plans";
+import Footer from "./Footer";
 
-function App() {
+function Help() {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <h1 className="text-center py-8 text-5xl">
         <strong>Hi!How can we help?</strong>
       </h1>
-      
+
       <div className=" py-6 pl-[430px]">
         <SearchBar />
       </div>
       <Plans />
-      <Footer/>
     </div>
   );
 }
 
-export default App;
+export default Help;

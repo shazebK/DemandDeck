@@ -27,7 +27,6 @@ export default function () {
         }
         onChange={(event) => setSearchText(event.target.value)}
         onKeyPress={handleKeyPress}
-
       />
     </div>
   );
