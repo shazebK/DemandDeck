@@ -1,6 +1,12 @@
 import React from "react";
+import { useRouter } from 'next/router';
 
 export default function Experts() {
+  const router = useRouter();
+  const clickHandler = () => {
+    router.push("/demand");
+  }
+
   return (
     <div className="max-w-[1240px]  p-2 mx-auto my-10 md:grid grid-cols-2">
       <div className=" col-span-1 md:w-[80%] text-center">
@@ -14,7 +20,7 @@ export default function Experts() {
           blanditiis recusandae, omnis obcaecati voluptate quis, neque nesciunt
           explicabo natus laboriosam? Porro, ex.
         </p>
-        <button className="w-[100%] bg-black text-white p-3 rounded my-4">
+        <button type = "button" className="w-[100%] bg-black text-white p-3 rounded my-4" onClick={clickHandler}>
           Get Started
         </button>
       </div>

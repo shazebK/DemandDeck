@@ -1,8 +1,5 @@
-// import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { getUserData } from "../../utils/api";
 import { useUser } from "../../hooks/queries";
 
 import React, { useState } from "react";
@@ -11,7 +8,7 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 const Navbar = () => {
   const { data: session } = useSession();
 
-  const logoutHandler = () => {
+  const signouthandler = () => {
     signOut();
   };
 
@@ -35,15 +32,26 @@ const Navbar = () => {
       )}
       <div className="w-1/3 hidden md:flex justify-between text-white">
         <Link href="/">Home</Link>
-        <Link href="/demands">Demands</Link>
-        <Link href="/create">Create</Link>
+        <Link href="/demand">Demands</Link>
+        <Link href="/demand/new">Create</Link>
       </div>
 
-      <Link href="/authentication" className="hidden md:block">
-        <button className="btn w-40 rounded-full border-none bg-white text-black transition duration-300 ease-in-out hover:bg-black hover:text-white">
-          Login
+      {!session && (
+        <Link href="/auth" className="">
+          <button className="btn w-40 rounded-full border-none bg-white text-black transition duration-300 ease-in-out  hover:text-prim hover:bg-white">
+            Login
+          </button>
+        </Link>
+      )}
+
+      {session && (
+        <button
+          className="btn w-40 rounded-full border-none bg-white text-black transition duration-300 ease-in-out  hover:text-prim hover:bg-white"
+          onClick={signouthandler}
+        >
+          Logout
         </button>
-      </Link>
+      )}
 
       {/* Responsive Menu */}
       <div
@@ -51,39 +59,12 @@ const Navbar = () => {
        ${toggle ? "left-[0]" : "left-[-100%]"}  `}
       >
         <Link href="/">Home</Link>
-        <Link href="/demands">Demands</Link>
-        <Link href="/create">Create</Link>
-        <Link href="/authentication">Login</Link>
+        <Link href="/demand">Demands</Link>
+        <Link href="/demand/new">Create</Link>
+        <Link href="/auth">Login</Link>
       </div>
     </div>
   );
 };
 
 export default Navbar;
-
-// <div className="navbar bg-blue-600 text-white font-bold text-xl px-4 sticky top-0 z-10">
-//   <Link className="flex-1" href={"/"}>
-//     DemandDeck
-//   </Link>
-//   <div>
-//     <Link href={"/poll"}>New Poll</Link>
-//     {!!session && (
-//       <Link className="btn btn-ghost rounded-full" href={"/auth/profile"}>
-//         {isLoading ? "Loading" : user?.name}
-//       </Link>
-//     )}
-//     {!session && (
-//       <Link className="btn btn-ghost" href={"/auth"}>
-//         Login
-//       </Link>
-//     )}
-//     {session && (
-//       <div className="btn btn-ghost rounded-full" onClick={logoutHandler}>
-//         Logout
-//       </div>
-//     )}
-//     <Link className="btn btn-ghost" href={"/demands"}>
-//       Polls
-//     </Link>
-//   </div>
-// </div>

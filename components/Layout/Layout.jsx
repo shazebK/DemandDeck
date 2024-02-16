@@ -1,5 +1,5 @@
 import React from "react";
-import TestNav from "../UI/TestNav";
+import Navbar from "../UI/Navbar";
 import { Poppins } from "next/font/google";
 import Footer from "../LandingPage/Footer";
 
@@ -11,8 +11,7 @@ const poppins = Poppins({
 const Layout = ({ children }) => {
   return (
     <div className={`min-h-screen bg-white ${poppins.className}`}>
-      {/* <Navbar /> */}
-      <TestNav />
+      <Navbar />
       <main>{children}</main>
       <Footer />
     </div>

@@ -51,12 +51,6 @@ const handler = async (req, res) => {
           model: Business,
         });
       res.status(200).json(demand);
-    } else if (req.method == "POST") {
-      const user = await User.findById(id);
-      const dem = await Demand.create({ ...req.body, creator: id });
-      user.demandCreated.push(dem._id);
-      await user.save();
-      res.status(201).json({ msg: "Success" });
     }
   }
 };

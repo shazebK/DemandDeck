@@ -1,6 +1,6 @@
 import connectDB from "../../../../utils/db";
 import User from "../../../../models/User";
-import Resource from "../../../../models/Resources";
+import Resource from "../../../../models/Resource";
 
 const handler = async (req, res) => {
   connectDB();
@@ -59,18 +59,6 @@ const handler = async (req, res) => {
 
     const resl = ans.filter((el) => el);
     res.status(200).json(resl);
-  } else if (req.method == "POST") {
-    const { title, service, quantity } = req.body;
-    const resource = new Resource({ title, service });
-    const user = await User.findById(id);
-
-    user.resourcesClassified.available.push({
-      resource: resource._id,
-      quantity,
-    });
-    await user.save();
-    await resource.save();
-    res.status(201).json(resource);
   }
   //   }
 };

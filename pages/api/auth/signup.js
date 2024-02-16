@@ -5,13 +5,13 @@ import bcrypt from "bcryptjs";
 const handler = async (req, res) => {
   if (req.method === "POST") {
     connectDB();
-    const { name, password, email } = req.body;
+    const { name, password, email, role } = req.body;
     const hashed = await bcrypt.hash(password, 12);
     const user = await User.create({
       name,
       password: hashed,
       email,
-      role: "admin",
+      role,
     });
     user.resourcesClassified = { available: [], proposed: [], allocated: [] };
     await user.save();

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { ResponseSchema } from "./Response";
-import { ResourceProposalSchema } from "./Resources";
+import { ResourceProposalSchema } from "./Resource";
 
 const DemandSchema = new mongoose.Schema({
   title: {

@@ -1,6 +1,7 @@
 import Business from "../../../../models/Business";
 import Demand from "../../../../models/Demand";
 import Proposal from "../../../../models/Proposal";
+import Resource from "../../../../models/Resource";
 import User from "../../../../models/User";
 import connectDB from "../../../../utils/db";
 
@@ -32,6 +33,29 @@ const handler = async (req, res) => {
         path: "onRequest",
         select: "title description creator",
         model: Demand,
+      })
+      .populate({
+        path: "resourcesRequested",
+        populate: [
+          {
+            path: "resource",
+            model: Resource,
+          },
+          {
+            path: "from",
+            model: User,
+            select: "name email",
+          },
+        ],
+      })
+      .populate({
+        path: "resources",
+        populate: [
+          {
+            path: "resource",
+            model: Resource,
+          },
+        ],
       });
     res.status(200).json(business);
   } else if (req.method === "PUT") {

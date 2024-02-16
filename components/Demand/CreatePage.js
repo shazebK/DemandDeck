@@ -17,6 +17,11 @@ export default function CreatePage() {
     setTagIp("");
   };
 
+  function closeHandler(index) {
+    const newTags = tags.filter((element, i) => i != index);
+    setTags(newTags);
+  }
+
   const initialValues = {
     // category: "",
     title: "",
@@ -30,8 +35,6 @@ export default function CreatePage() {
   const { createDemand } = usePollMutations();
 
   const onSubmit = (values) => {
-    // console.log(values, tags);
-    // console.log(values.state + "," + values.city + "," + values.area);
     createDemand.mutate({
       title: values.title,
       description: values.description,
@@ -39,9 +42,7 @@ export default function CreatePage() {
       tags,
     });
 
-    if (createDemand.isSuccess) {
-      router.push("/demands");
-    }
+    router.push("/demand");
   };
 
   const validate = (values) => {
@@ -197,7 +198,11 @@ export default function CreatePage() {
 
             <div className="my-4 w-full flex flex-wrap">
               {tags.map((tag, index) => (
-                <DropDownCard text={tag} key={index} />
+                <DropDownCard
+                  text={tag}
+                  key={index}
+                  onClick={closeHandler.bind(this, index)}
+                />
               ))}
             </div>
           </div>

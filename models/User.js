@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ResourceClassifnSchema } from "./Resources";
+import { ResourceClassifnSchema } from "./Resource";
 
 const UserSchema = new mongoose.Schema({
   name: {
